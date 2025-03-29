@@ -20,17 +20,17 @@ const { products, loading } = useProductStore();
       <div class="flex flex-col gap-4 p-4 w-full h-full">
         <div class="flex justify-between items-center gap-4 p-1">
           <div>
-            <h3 class="text-2xl font-bold">Customers List</h3>
-            <p class="text-sm text-gray-500">Manage your customers here</p>
+            <h3 class="text-2xl font-bold">Categories List</h3>
+            <p class="text-sm text-gray-500">Manage your categories here  </p>
           </div>
           <div class="flex gap-2">
             <Button variant="outline" size="icon">
               <RefreshCwIcon />
             </Button>
-            <RouterLink to="/create-customer" >
+            <RouterLink to="/create-category" >
               <Button>
                 <CirclePlusIcon />
-                Add Customer
+                Add Category
               </Button>
             </RouterLink>
           </div>

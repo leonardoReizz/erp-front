@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, MailIcon, LockIcon } from "lucide-vue-next";
 import { useLoginStore } from "@/store/useLoginStore";
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
-
-const {handleLogin, loading} = useLoginStore();
+import { GoogleLogin } from 'vue3-google-login'
+const {handleLogin, loading, handleGoogleLogin} = useLoginStore();
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const {handleLogin, loading} = useLoginStore();
             </CardHeader>
             <div class="space-y-4">
               <div class="flex items-center gap-2">
-                <Button variant="outline" class="w-full">Google</Button>
+                <GoogleLogin :callback="handleGoogleLogin" class="w-full"  />
               </div>
               <div class="flex items-center gap-2">
                 <div class="flex-1 h-[1px] bg-muted"></div>
@@ -80,7 +80,7 @@ const {handleLogin, loading} = useLoginStore();
                       <FormMessage />
                     </FormItem>
                   </FormField>
-                  <RouterLink to="/forgot-password" class="text-sm text-primary hover:underline">Forgot your password?</RouterLink>
+                  <RouterLink to="/" class="text-sm text-primary hover:underline">Forgot your password?</RouterLink>
                 </div>
                 <Button type="submit" :disabled="loading" class="w-full mt-4">
                   <Loader2 v-if="loading" class="w-4 h-4 animate-spin" />

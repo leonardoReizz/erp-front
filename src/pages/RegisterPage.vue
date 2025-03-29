@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-vue-next";
 import { MailIcon, UserIcon, LockIcon } from "lucide-vue-next";
 import { useRegisterStore } from "@/store/useRegisterStore";
+import { GoogleLogin } from 'vue3-google-login'
 
-const {handleRegister, loading} = useRegisterStore();
+const {handleRegister, loading, handleGoogleRegister} = useRegisterStore();
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const {handleRegister, loading} = useRegisterStore();
             </CardHeader>
             <div class="space-y-4">
               <div class="flex items-center gap-2">
-                <Button variant="outline" class="w-full">Google</Button>
+                <GoogleLogin :callback="handleGoogleRegister" class="w-full"  />
               </div>
               <div class="flex items-center gap-2">
                 <div class="flex-1 h-[1px] bg-muted"></div>
@@ -37,7 +38,6 @@ const {handleRegister, loading} = useRegisterStore();
                   <FormItem class="relative">
                     <FormControl >
                       <Input
-                        type="email"
                         placeholder="Your Name"
                         class="pl-8"
                         v-bind="componentField"
@@ -66,7 +66,7 @@ const {handleRegister, loading} = useRegisterStore();
                 </FormField>
                 <FormField
                   v-slot="{ componentField }"
-                  name="confirmPassword"
+                  name="password"
                 >
                   <FormItem class="relative">
                     <FormControl>
